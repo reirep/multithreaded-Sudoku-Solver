@@ -35,6 +35,8 @@ public class SyncStack {
     }
 
     public synchronized boolean isFinished(){
-        return oneSolution && solutions.size() > 0 || st.size() == 0 && !oneSolution && solutions.size() > 0;
+        boolean one = oneSolution && solutions.size() > 0;
+        boolean multi = !oneSolution && st.size() == 0 && nbrChomeurs == nbrThreads;
+        return one || multi;
     }
 }

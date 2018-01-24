@@ -61,8 +61,10 @@ public class Runner extends Thread{
                 st.nbrChomeurs ++;
                 s = null;
             }
-            if(s != null)
+            if(s != null) {
                 s.solve();
+                st.nbrChomeurs ++;
+            }
         }
     }
 
