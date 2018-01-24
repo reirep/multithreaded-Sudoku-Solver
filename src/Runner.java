@@ -39,9 +39,7 @@ public class Runner extends Thread{
         };
 
         LinkedList<Sudoku> sols = solve(grid, false, 1);
-        sols.forEach((Sudoku s) -> {
-            System.out.println(s.toString());
-        });
+        sols.forEach(System.out::println);
     }
 
     private SyncStack st;
