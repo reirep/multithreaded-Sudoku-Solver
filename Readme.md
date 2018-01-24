@@ -4,7 +4,7 @@ I create this solve to entertain me, if you have suggestions issues and push req
 
 ## How to use it ?
 
-**OI know that there is currently a bug when there is more than one thread (\o/). I will adress it when i find the time.**
+**I know that there is currently a bug when there is more than one thread (\o/). I will adress it when i find the time.**
 
 Just call the static method solve in Runner.java with your grid in argument. 
 The boolean oneSol is to indicate if the solver must stop after he found one solution or if he need to find all the solutions.
