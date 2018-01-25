@@ -4,9 +4,7 @@ I create this solve to entertain me, if you have suggestions issues and push req
 
 ## How to use it ?
 
-**I know that there is currently a bug when there is more than one thread (\o/). I will adress it when i find the time.**
-
-Just call the static method solve in Runner.java with your grid in argument. 
+Just call the static method solve in [Runner.java](src/Runner.java) with your grid in argument. 
 The boolean oneSol is to indicate if the solver must stop after he found one solution or if he need to find all the solutions.
 The integer passed is the number of thread working on the problem.
 
@@ -29,3 +27,6 @@ There this is an example in src/Runner.java
         LinkedList<Sudoku> sols = solve(grid, false, 1);
         sols.forEach(System.out::println);
 ```
+
+## Dependencies
+I'm using the [log4j2](https://logging.apache.org/log4j/2.x/) lib from apache. The [log4j2.xml](srd/log4j2.xml) I'm using is included.
