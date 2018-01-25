@@ -31,4 +31,6 @@ There this is an example in src/Runner.java
 ## Dependencies
 I'm using the [log4j2](https://logging.apache.org/log4j/2.x/) lib from apache. The [log4j2.xml](src/log4j2.xml) I'm using is included.
 
+## License
+
 This project is licensed under the terms of the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
