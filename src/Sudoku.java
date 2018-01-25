@@ -1,8 +1,11 @@
+import org.apache.log4j.Logger;
 
 /**
  * Created by pierre.
  */
 public class Sudoku {
+
+    final static Logger logger = Logger.getLogger(Sudoku.class);
 
     public static final int GRID_HEIGHT = 9, GRID_WIDTH = 9;
 

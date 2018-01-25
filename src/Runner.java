@@ -1,3 +1,7 @@
+
+
+import org.apache.log4j.Logger;
+
 import java.util.EmptyStackException;
 import java.util.LinkedList;
 
@@ -6,6 +10,7 @@ import java.util.LinkedList;
  */
 public class Runner extends Thread{
 
+    final static Logger logger = Logger.getLogger(Runner.class);
 
     public static void main(String ... args){
         /* -> original, to copy, paste and verify
@@ -25,21 +30,21 @@ public class Runner extends Thread{
         */
 
         byte [][] grid = new byte[][]{
-                {1,0,5, 3,9,6, 4,0,2},
+                {1,0,5, 3,0,0, 0,0,2},
                 {0,0,0, 0,0,5, 0,1,0},
-                {6,9,4, 0,8,2, 0,0,3},
+                {0,9,0, 0,8,2, 0,0,3},
 
-                {7,0,2, 0,0,0, 3,0,8},
-                {8,0,9, 0,0,0, 1,0,7},
-                {4,3,1, 0,0,0, 0,6,0},
+                {0,0,2, 0,0,0, 0,0,8},
+                {0,0,0, 0,0,0, 1,0,7},
+                {0,0,1, 0,0,0, 0,0,0},
 
                 {2,4,0, 0,1,9, 8,0,5},
-                {5,0,3, 0,0,0, 6,0,4},
+                {5,0,3, 0,0,0, 0,0,0},
                 {0,0,6, 0,0,3, 7,2,0},
         };
 
-        LinkedList<Sudoku> sols = solve(grid, false, 1);
-        sols.forEach(System.out::println);
+        LinkedList<Sudoku> sols = solve(grid, false, 5);
+        //sols.forEach(System.out::println);
     }
 
     private SyncStack st;
@@ -49,26 +54,24 @@ public class Runner extends Thread{
     }
 
     public void run(){
-        Sudoku s = null;
         while(!st.isFinished()){
+            Sudoku s;
+
             try {
-                st.nbrChomeurs --;
                 s = st.pop();
             }
             catch(EmptyStackException ignore){
-                st.nbrChomeurs ++;
                 s = null;
             }
             if(s != null) {
                 s.solve();
-                st.nbrChomeurs ++;
             }
         }
     }
 
 
     public static LinkedList<Sudoku> solve(byte [][] grid, boolean oneSol, int threads){
-        SyncStack st = new SyncStack(oneSol, threads);
+        SyncStack st = new SyncStack(oneSol);
         Sudoku sudoku = new Sudoku(grid, (byte)0,(byte)0, st);
         st.push(sudoku);
 
@@ -76,15 +79,26 @@ public class Runner extends Thread{
         for(int i =0; i < threads; i++)
             runners[i] = new Runner(st);
 
-        for(Runner r : runners)
+
+        for(Runner r : runners) {
             r.start();
+            logger.debug("Laucnher thread "+r.getId());
+
+        }
+
+        logger.info(threads+" threads have been started.");
+        logger.info("Waiting for the threads to end...");
 
         for(Runner r : runners)
             try {
                 r.join();
+                logger.debug("Joined thread "+r.getId());
             } catch (InterruptedException e) {
+                logger.warn("Join of the threads have failed.");
                 e.printStackTrace();
             }
+
+        logger.info(st.solutions.size()+" solution"+(st.solutions.size() > 1 ? "s" : "")+" found !");
 
         return st.solutions;
     }
