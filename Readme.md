@@ -1,10 +1,10 @@
 # Java Multithreaded Sudoku Solver
 
-I create this solve to entertain me, if you have suggestions issues and push request are welcome.
+I've created this solver to entertain me. Suggestions, issues and push request are welcome.
 
 ## How to use it ?
 
-Just call the static method solve in [Runner.java](src/Runner.java) with your grid in argument. 
+Just call the static method solve in [Runner.java](src/Runner.java) with your grid in argument (must be a 9x9 byte array). 
 The boolean oneSol is to indicate if the solver must stop after he found one solution or if he need to find all the solutions.
 The integer passed is the number of thread working on the problem.
 
