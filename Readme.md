@@ -29,4 +29,4 @@ There this is an example in src/Runner.java
 ```
 
 ## Dependencies
-I'm using the [log4j2](https://logging.apache.org/log4j/2.x/) lib from apache. The [log4j2.xml](srd/log4j2.xml) I'm using is included.
+I'm using the [log4j2](https://logging.apache.org/log4j/2.x/) lib from apache. The [log4j2.xml](src/log4j2.xml) I'm using is included.
