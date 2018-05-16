@@ -33,4 +33,4 @@ I'm using the [log4j2](https://logging.apache.org/log4j/2.x/) lib from apache. T
 
 ## License
 
-This project is licensed under the terms of the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
+This project is licensed under the terms of the [MIT](LICENSE.md) license.
